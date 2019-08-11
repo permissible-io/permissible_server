@@ -20,7 +20,9 @@ fn main() {
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     let pool = create_pool(database_url);
 
-    let addr = ([127, 0, 0, 1], 3000).into();
+    let addr = env::var("LISTEN_ADDRESS")
+        .map(|x| x.parse().expect("LISTEN_ADDRESS provided is invalid"))
+        .unwrap_or(([127, 0, 0, 1], 3000).into());
 
     let root_node = Arc::new(RootNode::new(Query, Mutation));
 
