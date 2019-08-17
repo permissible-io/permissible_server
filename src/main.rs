@@ -44,13 +44,13 @@ fn graphql_response(
         }
     }
 
-    let connection = Arc::new(Context {
+    let context = Arc::new(Context {
         user_id: user_id,
         database: db_pool,
         request_uuid,
     });
     Box::new(
-        juniper_hyper::graphql(root_node, connection, req).map(move |response| {
+        juniper_hyper::graphql(root_node, context, req).map(move |response| {
             info!("{} - request completed {}", request_uuid, response.status());
             response
         }),
