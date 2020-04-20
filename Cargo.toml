@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 futures = "0.1"
-hyper = "0.12"
+hyper = "0.13"
 jsonwebtoken = "6.0"
 juniper = "0.13"
 juniper_hyper = "0.4"
